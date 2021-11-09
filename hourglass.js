@@ -1,4 +1,4 @@
-const entry = 20
+const entry = 21
 
 function Hourglass(size) {
     const halfSize = Math.floor(size/2)
@@ -11,7 +11,7 @@ function Hourglass(size) {
         return sandLine.join('')
     }
 
-    this.size = size
+    
     this.upperHalf = Array(halfSize)
     this.lowerHalf = Array(halfSize)
 
@@ -20,8 +20,21 @@ function Hourglass(size) {
         this.lowerHalf[halfSize - index - 1] = sandLine(index)
     }
 
+    /* métodos */
+    
+    this.print = () => {
+        this.upperHalf.forEach((line) => {
+            console.log(line)
+        })
+        remainder ? console.log(sandLine(halfSize)) : null
+        this.lowerHalf.forEach((line) => {
+            console.log(line)
+        })
+    }
+
 }
 
 const hourglass = new Hourglass(entry)
-console.log(hourglass.upperHalf)
-console.log(hourglass.lowerHalf)
+hourglass.print()
+//console.log(hourglass.upperHalf)
+//console.log(hourglass.lowerHalf)
