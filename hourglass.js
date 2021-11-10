@@ -3,7 +3,6 @@ const readline = require('readline').createInterface({
     output: process.stdout
 })
 
-
 function Hourglass(size) {
     const halfSize = Math.floor(size/2)
     const remainder = size%2 ? createSandLine(halfSize) : null
@@ -65,6 +64,7 @@ function Hourglass(size) {
 
     this.finish = () => {
         clearInterval(intervalObj)
+        console.log(process.stdin.read());  //impedir que o programa feche ao fim
     }
 
     function createSandLine(index, full) {
@@ -90,9 +90,11 @@ function askRecursively() {
         const size = Number(entry)
         if (size >= 20) {
             const hourglass = new Hourglass(size)            
-            //hourglass.print()
-            hourglass.initiate()
-            readline.close()            
+            hourglass.print()
+            readline.question('Pressione qualquer tecla para iniciar animação', () => {
+                hourglass.initiate()
+                readline.close()                    
+            })
         } else {
             console.log('Digite um número maior ou igual a 20')
             askRecursively()
